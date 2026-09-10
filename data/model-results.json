@@ -1,0 +1,149 @@
+{
+  "version": "0.4.1",
+  "status": "trained_with_limits",
+  "completed_at": "2026-09-10T11:33:46.659224+08:00",
+  "public_scope": "Aggregate metrics only; no controlled AIS rows, vessel identities, event coordinates, or model weights.",
+  "data_scale": {
+    "raw_ais_rows": 3295161,
+    "vessel_cable_day_events": 651729,
+    "model_eligible_events": 23690,
+    "eligibility_share": 0.036349464271192476,
+    "trajectory_sequences": 117342,
+    "splits": {
+      "2023": {
+        "role": "訓練",
+        "events": 9423,
+        "sequences": 59695
+      },
+      "2024": {
+        "role": "驗證",
+        "events": 8634,
+        "sequences": 37861
+      },
+      "2025": {
+        "role": "封存測試",
+        "events": 5633,
+        "sequences": 19786
+      }
+    }
+  },
+  "models": [
+    {
+      "name": "Isolation Forest",
+      "family": "傳統機器學習",
+      "task": "多變量少見行為排序",
+      "trained": true
+    },
+    {
+      "name": "Deep Autoencoder",
+      "family": "深度學習",
+      "task": "正常船纜互動重建",
+      "trained": true,
+      "parameters": 2488
+    },
+    {
+      "name": "Ridge Regression",
+      "family": "統計學習",
+      "task": "下一點位移基線",
+      "trained": true
+    },
+    {
+      "name": "2-layer GRU",
+      "family": "深度學習",
+      "task": "五步歷史預測下一船位",
+      "trained": true,
+      "parameters": 42850
+    }
+  ],
+  "anomaly": {
+    "semi_synthetic_ensemble_auroc": 0.9983060625,
+    "paired_uplift_share": 0.9985,
+    "if_ae_spearman": 0.8197422116208645,
+    "if_ae_daily_top5_jaccard": 0.5224759302628155,
+    "maximum_2025_psi": 0.02053512157593251,
+    "known_incidents_decision": "兩案皆因單點觀測而棄權"
+  },
+  "trajectory": {
+    "validation_2024": {
+      "ais_kinematic": {
+        "median_error_km": 0.8321342344172129,
+        "mean_error_km": 2.702453995468481,
+        "p90_error_km": 6.959342414860688,
+        "p95_error_km": 11.636728629894753,
+        "entry_precision": 0.9111960909284045,
+        "entry_recall": 0.9193012538848998,
+        "entry_f1": 0.9152307281941852
+      },
+      "gru": {
+        "median_error_km": 1.0436640977859497,
+        "mean_error_km": 2.641188144683838,
+        "p90_error_km": 6.51087760925293,
+        "p95_error_km": 9.993537902832031,
+        "entry_precision": 0.9121707731520816,
+        "entry_recall": 0.9204801200300075,
+        "entry_f1": 0.9163066090574492
+      }
+    },
+    "frozen_test_2025": {
+      "ais_kinematic": {
+        "median_error_km": 0.6237798046695486,
+        "mean_error_km": 2.418491563431608,
+        "p90_error_km": 6.338830332503684,
+        "p95_error_km": 11.131099885457292,
+        "entry_precision": 0.9212877127928535,
+        "entry_recall": 0.9291177970423253,
+        "entry_f1": 0.9251861882193636
+      },
+      "gru": {
+        "median_error_km": 0.8251549601554871,
+        "mean_error_km": 2.3748021125793457,
+        "p90_error_km": 5.959343910217285,
+        "p95_error_km": 9.372159957885742,
+        "entry_precision": 0.9218406361021824,
+        "entry_recall": 0.9262281149073602,
+        "entry_f1": 0.9240291673732406
+      }
+    },
+    "tail_error_reduction": {
+      "2024": {
+        "mean": 0.02267045096322634,
+        "median": -0.25420161149466736,
+        "p90": 0.06444068690313697,
+        "p95": 0.14120727391041543
+      },
+      "2025": {
+        "mean": 0.018064752225255287,
+        "median": -0.3228305148362702,
+        "p90": 0.059866947430427725,
+        "p95": 0.15802031656095308
+      }
+    },
+    "selection": "GRU 未通過整體中位誤差升格門檻；保留為尾端修正 Challenger。"
+  },
+  "decision_policy": [
+    "AIS 物理外推：一般穩定航行主預測",
+    "GRU：較難預測尾端的修正與 surprise residual",
+    "Isolation Forest＋Autoencoder：少見船纜互動排序",
+    "Coverage gate：資料不足直接棄權"
+  ],
+  "insights": [
+    {
+      "title": "可觀測性是第一道模型",
+      "body": "只有約 3.6% 船纜日事件具三點以上且通過品質門檻；單點船位不應硬判風險。"
+    },
+    {
+      "title": "罕見不等於危險",
+      "body": "規則與學習模型排序方向不同；快速穿越可能統計罕見卻是正常反例，需人工標註。"
+    },
+    {
+      "title": "深度模型價值在尾端",
+      "body": "GRU 未改善典型中位誤差，但 p90／p95 改善在 2024 與 2025 同方向重現。"
+    }
+  ],
+  "limitations": [
+    "海纜採公開概化路線，不能作實際淨距",
+    "半合成壓力測試不是事故準確率",
+    "兩個已知事故只有一筆 AIS，均棄權",
+    "目前未接入預測時可得海象與即時 AIS"
+  ]
+}
