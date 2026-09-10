@@ -1,5 +1,13 @@
 # CableShield-TW｜分級監測與證據查核
-更新：2026-09-10 · v0.6.0
+更新：2026-09-10 · v0.7.0
+
+## 資料處理與模型架構
+
+![CableShield-TW 海纜風險查核與持續學習架構](./assets/cableshield-architecture-v0.1.svg)
+
+多源資料先轉成可追溯的船舶－海纜－時間窗事件，通過資料品質與 Coverage Gate 後，再由 G1 異常排序及 G2 下一船位模型提供證據。系統每天固定產出 Top-5 查核順位；資料不足時保留原因並安全棄權。人工回饋經標籤升格、時序驗證與核准後，才可更新下一版模型。
+
+[下載向量 PDF](./assets/cableshield-architecture-v0.1.pdf) · [另頁開啟 SVG](./assets/cableshield-architecture-v0.1.svg)
 
 以船舶或匿名接觸事件為單位，依尺寸證據、作業型態及可觀測性調整查核方式。船型不是尺寸；未取得船長或噸位時保留未知。
 
