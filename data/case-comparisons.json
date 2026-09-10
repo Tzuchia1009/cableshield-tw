@@ -1,0 +1,131 @@
+{
+  "version": "0.5.0",
+  "as_of": "2026-09-10",
+  "evidence_boundary": "Public incident reports are external case audits. They are not training labels and do not establish incident-detection accuracy.",
+  "cases": [
+    {
+      "event_id": "INC_20250103_TPE",
+      "date": "2025-01-03",
+      "vessel_name": "SHUNXIN 39（順興39）",
+      "cable_name": "Trans-Pacific Express Cable System（TPE）",
+      "location_text": "野柳東北方海域",
+      "official_status": "數發部已將相關事證函送檢調；公開資料不支持本平台自行推論故意",
+      "official_summary": "數發部記錄於上午接獲國際海纜斷纜通報並啟動備援，後續將事證函送檢調。",
+      "local_audit": {
+        "nodass_event_window_observations": 1,
+        "model_eligible": false,
+        "decision": "abstain_insufficient_sequence",
+        "matched_schematic_proxy": "APCN-2",
+        "interpretation": "僅一筆事件窗 AIS；概化代理線亦與官方纜名不一致，隔離補證，不得宣稱成功偵測。"
+      },
+      "sources": [
+        {
+          "kind": "官方",
+          "label": "數位發展部｜1月3日國際海纜斷纜事件",
+          "url": "https://moda.gov.tw/press/press-releases/15038"
+        },
+        {
+          "kind": "新聞",
+          "label": "Reuters｜船東否認涉入，呈現事件定性爭議",
+          "url": "https://theprint.in/world/exclusive-china-linked-shipowner-denies-taiwan-accusation-of-damaging-undersea-cable/2436468/"
+        }
+      ]
+    },
+    {
+      "event_id": "INC_20250222_TP3",
+      "date": "2025-02-22—25",
+      "vessel_name": "HONG TAI 58（宏泰58）",
+      "cable_name": "臺澎第三海纜（TP3）",
+      "location_text": "臺南北門／將軍外海約5至6浬",
+      "official_status": "法院一審判決認定毀壞纜線；後續司法狀態以官方裁判為準",
+      "official_summary": "法院新聞稿記載船舶在禁錨警戒區下錨並呈Z字型徘徊，海纜其後斷裂。",
+      "local_audit": {
+        "nodass_event_window_observations": 1,
+        "model_eligible": false,
+        "decision": "abstain_insufficient_sequence",
+        "matched_schematic_proxy": "TPKM3",
+        "interpretation": "本地資料只觀測到一點，無法重建法院所述Z字航跡；案例證明需要更密集AIS及跨來源補證。"
+      },
+      "sources": [
+        {
+          "kind": "官方",
+          "label": "司法院｜臺南地院114年度訴字第235號新聞稿",
+          "url": "https://www.judicial.gov.tw/tw/cp-1888-1341586-34f43-1.html"
+        },
+        {
+          "kind": "官方",
+          "label": "海巡署｜宏泰58登檢扣留與起訴說明",
+          "url": "https://www.cga.gov.tw/GipOpen/wSite/ct?ctNode=10545&mp=9994&xItem=164776"
+        },
+        {
+          "kind": "新聞",
+          "label": "AP｜海纜斷裂與船舶攔查報導",
+          "url": "https://apnews.com/article/14bfd6ddad184d77ae45068fee9b37d2"
+        }
+      ]
+    },
+    {
+      "event_id": "INC_20251007_TDM2",
+      "date": "2025-10-07",
+      "vessel_name": "MIN LIAN YU 60138（閩連漁60138）",
+      "cable_name": "臺馬二號海纜（TDM2）",
+      "location_text": "東引機房北方外海約4.2浬",
+      "official_status": "法院認定為過失毀損並判刑確定；公開結論不支持將損害直接等同惡意",
+      "official_summary": "海巡署與法院資料記載，該漁船作業時漁具勾損海纜；本案是有實害但法律認定為過失的反例。",
+      "local_audit": {
+        "nodass_event_window_observations": 0,
+        "model_eligible": false,
+        "decision": "abstain_post_event_only",
+        "matched_schematic_proxy": "現行5公里事件表無相符近纜事件",
+        "interpretation": "本地資料只有事故窗後約7小時的一筆同名AIS，不能倒推事故時行為，也不能作模型命中。"
+      },
+      "sources": [
+        {
+          "kind": "官方",
+          "label": "海巡署｜海纜案件偵辦與判決結果",
+          "url": "https://www.cga.gov.tw/GipOpen/wSite/fp?ctNode=650&mp=999&xItem=166730"
+        },
+        {
+          "kind": "新聞",
+          "label": "中央社｜漁具勾損臺馬二號海纜判決",
+          "url": "https://www.cna.com.tw/news/asoc/202601080338.aspx"
+        }
+      ]
+    }
+  ],
+  "learning_loop": {
+    "status": "controlled_local_contract_implemented; public_scheduler_not_running",
+    "steps": [
+      {
+        "name": "品質閘門與隔離",
+        "detail": "點數不足、缺訊過長、身分衝突、來源過期、分布外或幾何不確定時，事件退出Top-K並進入需補證佇列。"
+      },
+      {
+        "name": "結構化人工複核",
+        "detail": "保留匿名審查者、判斷、信心、理由、證據ID、證據權威與標籤可用時間；紀錄只能追加。"
+      },
+      {
+        "name": "回訓候選閘門",
+        "detail": "一般標籤需信心達0.8；事故關聯標籤需兩位獨立審查者及至少一項官方結果。新聞只能作脈絡。"
+      },
+      {
+        "name": "Champion–Challenger",
+        "detail": "新標籤只進候選資料集；依時間切分重訓Challenger，通過封存測試、校準與coverage門檻後，再由人核准升格。"
+      }
+    ],
+    "proposed_cadence": [
+      "新資料快照：重算品質與事件特徵",
+      "每週：檢查隔離佇列與來源健康",
+      "每月：檢查資料漂移、尾端誤差與人工分歧",
+      "每季或門檻觸發：訓練Challenger並封存評估"
+    ],
+    "automatic_weight_update": false,
+    "known_case_quarantine_count": 3,
+    "known_case_training_candidate_count": 0
+  },
+  "policy_context": {
+    "label": "數位發展部114年度臺灣海底通訊電纜損害原因分析及策進報告",
+    "url": "https://moda.gov.tw/press/press-releases/19392",
+    "summary": "官方報告主張由被動修復轉向主動防禦與韌性建構，並強調異常AIS調查與跨機關情資共享。"
+  }
+}

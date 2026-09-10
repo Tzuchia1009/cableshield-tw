@@ -1,5 +1,5 @@
 {
-  "version": "0.4.1",
+  "version": "0.5.0",
   "status": "trained_with_limits",
   "completed_at": "2026-09-10T11:33:46.659224+08:00",
   "public_scope": "Aggregate metrics only; no controlled AIS rows, vessel identities, event coordinates, or model weights.",
@@ -143,7 +143,7 @@
   "limitations": [
     "海纜採公開概化路線，不能作實際淨距",
     "半合成壓力測試不是事故準確率",
-    "兩個已知事故只有一筆 AIS，均棄權",
+    "三個公開案例在事故窗內序列均不足，不得評分",
     "目前未接入預測時可得海象與即時 AIS"
   ]
 }
