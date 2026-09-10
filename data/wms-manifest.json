@@ -1,0 +1,98 @@
+{
+  "retrieved_at": "2026-09-10",
+  "services": [
+    {
+      "id": "moi-relief",
+      "endpoint": "https://oceanmaps.moi.gov.tw/arcgis/services/MOI_storage/topography/MapServer/WMSServer",
+      "params": {
+        "SERVICE": "WMS",
+        "REQUEST": "GetMap",
+        "VERSION": "1.1.1",
+        "LAYERS": "0",
+        "STYLES": "",
+        "SRS": "EPSG:3857",
+        "BBOX": "13024380.422813008,2154935.915085893,13914936.349159198,3248973.7896509725",
+        "WIDTH": 1500,
+        "HEIGHT": 1800,
+        "FORMAT": "image/png",
+        "TRANSPARENT": "TRUE"
+      },
+      "bytes": 5541606,
+      "sha256": "422fc07c42bdf6fedd6c98aa4c97dd7648a1a8d9ce99a2cfd70859547afd37f5",
+      "mime": "image/png",
+      "status": "verified",
+      "bounds": [
+        [
+          19,
+          117
+        ],
+        [
+          28,
+          125
+        ]
+      ]
+    },
+    {
+      "id": "gebco-relief",
+      "endpoint": "https://wms.gebco.net/mapserv",
+      "params": {
+        "SERVICE": "WMS",
+        "REQUEST": "GetMap",
+        "VERSION": "1.1.1",
+        "LAYERS": "GEBCO_LATEST",
+        "STYLES": "",
+        "SRS": "EPSG:3857",
+        "BBOX": "13024380.422813008,2154935.915085893,13914936.349159198,3248973.7896509725",
+        "WIDTH": 1500,
+        "HEIGHT": 1800,
+        "FORMAT": "image/png",
+        "TRANSPARENT": "TRUE"
+      },
+      "bytes": 3990072,
+      "sha256": "541f6996c3d5b11991b7010d6d8b9cc0bf5a3776ad6006dbb39693229ef3fd8c",
+      "mime": "image/png",
+      "status": "verified",
+      "bounds": [
+        [
+          19,
+          117
+        ],
+        [
+          28,
+          125
+        ]
+      ]
+    },
+    {
+      "id": "moi-enc",
+      "endpoint": "https://oceanmaps.moi.gov.tw/arcgis/services/MOI_storage/ENCframe/MapServer/WMSServer",
+      "params": {
+        "SERVICE": "WMS",
+        "REQUEST": "GetMap",
+        "VERSION": "1.1.1",
+        "LAYERS": "0",
+        "STYLES": "",
+        "SRS": "EPSG:3857",
+        "BBOX": "13024380.422813008,2154935.915085893,13914936.349159198,3248973.7896509725",
+        "WIDTH": 1500,
+        "HEIGHT": 1800,
+        "FORMAT": "image/png",
+        "TRANSPARENT": "TRUE"
+      },
+      "bytes": 25307,
+      "sha256": "f6a71c3905fbe883075d7bbce8e41ce6df2d0cff1befd4875b24edcd9b381af4",
+      "mime": "image/png",
+      "status": "verified",
+      "bounds": [
+        [
+          19,
+          117
+        ],
+        [
+          28,
+          125
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "mode": "contract_demo",
+  "evidence_state": "synthetic_contract_only",
+  "disclaimer_zh": "本資料只用來驗證介面與 API 契約，不是實際船舶、事故、模型結果或風險判定。",
+  "events": [
+    {
+      "event_id": "DEMO-CONTRACT-001",
+      "duty_date": "2099-01-01",
+      "vessel_pseudonym": "DEMO-VESSEL-A",
+      "cable_segment_id": "DEMO-CORRIDOR-NORTH-01",
+      "map_anchor_lon": 121.45,
+      "map_anchor_lat": 25.2,
+      "map_anchor_role": "synthetic_display_anchor",
+      "risk_score": 0.91,
+      "uncertainty_low": 0.72,
+      "uncertainty_high": 0.97,
+      "data_quality_state": "limited",
+      "decision_state": "pending_review",
+      "trigger_factors": [
+        "低速停留時間較長",
+        "多次改變航向",
+        "接近概化海纜走廊"
+      ],
+      "counter_evidence": [
+        "當時海流可能造成部分位移"
+      ],
+      "missing_evidence": [
+        "需補查雷達或其他感測器"
+      ],
+      "evidence_ids": [
+        "DEMO-EV-001-A",
+        "DEMO-EV-001-B"
+      ],
+      "abstention_reason": null
+    },
+    {
+      "event_id": "DEMO-CONTRACT-002",
+      "duty_date": "2099-01-01",
+      "vessel_pseudonym": "DEMO-VESSEL-B",
+      "cable_segment_id": "DEMO-CORRIDOR-EAST-02",
+      "map_anchor_lon": 122.48,
+      "map_anchor_lat": 24.7,
+      "map_anchor_role": "synthetic_display_anchor",
+      "risk_score": 0.82,
+      "uncertainty_low": 0.7,
+      "uncertainty_high": 0.9,
+      "data_quality_state": "sufficient",
+      "decision_state": "pending_review",
+      "trigger_factors": [
+        "跨纜角度異常",
+        "短時間重複進出走廊"
+      ],
+      "counter_evidence": [
+        "船速仍符合一般通行範圍"
+      ],
+      "missing_evidence": [],
+      "evidence_ids": [
+        "DEMO-EV-002-A"
+      ],
+      "abstention_reason": null
+    },
+    {
+      "event_id": "DEMO-CONTRACT-003",
+      "duty_date": "2099-01-01",
+      "vessel_pseudonym": "DEMO-VESSEL-C",
+      "cable_segment_id": "DEMO-CORRIDOR-SOUTH-03",
+      "map_anchor_lon": 120.82,
+      "map_anchor_lat": 22.4,
+      "map_anchor_role": "synthetic_display_anchor",
+      "risk_score": 0.74,
+      "uncertainty_low": 0.55,
+      "uncertainty_high": 0.86,
+      "data_quality_state": "limited",
+      "decision_state": "pending_review",
+      "trigger_factors": [
+        "AIS 間隔變長",
+        "低速接近走廊"
+      ],
+      "counter_evidence": [
+        "附近可能存在正常作業區"
+      ],
+      "missing_evidence": [
+        "港界與錨區脈絡待補"
+      ],
+      "evidence_ids": [
+        "DEMO-EV-003-A",
+        "DEMO-EV-003-B"
+      ],
+      "abstention_reason": null
+    },
+    {
+      "event_id": "DEMO-CONTRACT-004",
+      "duty_date": "2099-01-01",
+      "vessel_pseudonym": "DEMO-VESSEL-D",
+      "cable_segment_id": "DEMO-CORRIDOR-WEST-04",
+      "map_anchor_lon": 119.9,
+      "map_anchor_lat": 24.3,
+      "map_anchor_role": "synthetic_display_anchor",
+      "risk_score": 0.66,
+      "uncertainty_low": 0.51,
+      "uncertainty_high": 0.79,
+      "data_quality_state": "sufficient",
+      "decision_state": "pending_review",
+      "trigger_factors": [
+        "沿走廊移動距離較長"
+      ],
+      "counter_evidence": [
+        "航跡穩定且沒有明顯停留"
+      ],
+      "missing_evidence": [],
+      "evidence_ids": [
+        "DEMO-EV-004-A"
+      ],
+      "abstention_reason": null
+    },
+    {
+      "event_id": "DEMO-CONTRACT-005",
+      "duty_date": "2099-01-01",
+      "vessel_pseudonym": "DEMO-VESSEL-E",
+      "cable_segment_id": "DEMO-CORRIDOR-NORTH-05",
+      "map_anchor_lon": 121.38,
+      "map_anchor_lat": 23.3,
+      "map_anchor_role": "synthetic_display_anchor",
+      "risk_score": 0.61,
+      "uncertainty_low": 0.4,
+      "uncertainty_high": 0.77,
+      "data_quality_state": "limited",
+      "decision_state": "pending_review",
+      "trigger_factors": [
+        "速度與轉向組合偏離相似船舶"
+      ],
+      "counter_evidence": [
+        "偏離幅度仍接近季節基線"
+      ],
+      "missing_evidence": [
+        "船型與目的港資料待確認"
+      ],
+      "evidence_ids": [
+        "DEMO-EV-005-A"
+      ],
+      "abstention_reason": null
+    }
+  ],
+  "abstained_events": [
+    {
+      "event_id": "DEMO-CONTRACT-006",
+      "duty_date": "2099-01-01",
+      "vessel_pseudonym": "DEMO-VESSEL-F",
+      "cable_segment_id": "DEMO-CORRIDOR-EAST-06",
+      "map_anchor_lon": 122.1,
+      "map_anchor_lat": 22.0,
+      "map_anchor_role": "synthetic_display_anchor",
+      "risk_score": 0.95,
+      "uncertainty_low": 0.12,
+      "uncertainty_high": 0.99,
+      "data_quality_state": "abstain",
+      "decision_state": "needs_evidence",
+      "trigger_factors": [
+        "航跡中斷"
+      ],
+      "counter_evidence": [],
+      "missing_evidence": [
+        "有效 AIS 點不足",
+        "無法可靠估計接近速度"
+      ],
+      "evidence_ids": [
+        "DEMO-EV-006-A"
+      ],
+      "abstention_reason": "coverage_below_contract_threshold"
+    }
+  ]
+}
