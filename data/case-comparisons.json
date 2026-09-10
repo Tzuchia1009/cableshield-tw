@@ -1,7 +1,33 @@
 {
-  "version": "0.5.0",
+  "version": "0.5.1",
   "as_of": "2026-09-10",
   "evidence_boundary": "Public incident reports are external case audits. They are not training labels and do not establish incident-detection accuracy.",
+  "report_frame": {
+    "source_label": "數發部114年度臺灣海底通訊電纜損害原因分析及策進報告",
+    "source_url": "https://www-api.moda.gov.tw/File/Get/moda/zh-tw/kj9vSvBw5wUeqla",
+    "scope_note": "表4至表6提供月份、海纜、概略海域及事後成因，未提供可直接進行逐船預警驗證的完整時間、精確故障點與MMSI。",
+    "regimes": [
+      {
+        "name": "24海浬內",
+        "events": 7,
+        "headline": "6起人為因素",
+        "detail": "船錨3、疑似外力2、漁撈1、自然耗損1；適合作為船舶威脅層的外部事件母體。"
+      },
+      {
+        "name": "24海浬外",
+        "events": 25,
+        "headline": "11起地震",
+        "detail": "自然災害呈多纜群聚，另含漁撈5、計畫施工4、疑似外力2、待查2及放大器故障1；應由韌性層處理。"
+      }
+    ],
+    "comparison_funnel": [
+      {"label": "報告事件母體", "count": 32, "reason": "2025年表4至表6"},
+      {"label": "近岸人為事件", "count": 6, "reason": "屬船舶行為監測範圍"},
+      {"label": "可連結公開船名", "count": 3, "reason": "由官方或司法來源補齊"},
+      {"label": "事故前序列可評分", "count": 0, "reason": "現有AIS均未通過coverage gate"}
+    ],
+    "recommended_scores": ["行為風險", "證據覆蓋", "資產後果"]
+  },
   "cases": [
     {
       "event_id": "INC_20250103_TPE",
