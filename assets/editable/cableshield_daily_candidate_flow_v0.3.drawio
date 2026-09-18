@@ -1,0 +1,30 @@
+<mxfile host="app.diagrams.net" modified="2026-09-18T12:00:00.000Z" agent="Codex" version="24.7.17" type="device">
+  <diagram id="candidate-flow" name="G0-G1-TopK">
+    <mxGraphModel dx="1400" dy="850" grid="1" gridSize="10" guides="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="從研究候選到值勤查核量能：三個不同層次" style="text;html=1;strokeColor=none;fillColor=none;align=left;whiteSpace=wrap;fontFamily=Microsoft JhengHei;fontSize=28;fontStyle=1;fontColor=#18324A;" vertex="1" parent="1"><mxGeometry x="55" y="25" width="1050" height="45" as="geometry"/></mxCell>
+        <mxCell id="subtitle" value="657 是 G0 研究工作量；K 是可調的人工深查預算。兩者不構成模型準確率，也不能解讀為每日只有 K 件具風險。" style="text;html=1;strokeColor=none;fillColor=none;align=left;whiteSpace=wrap;fontFamily=Microsoft JhengHei;fontSize=17;fontColor=#486579;" vertex="1" parent="1"><mxGeometry x="55" y="75" width="1350" height="38" as="geometry"/></mxCell>
+
+        <mxCell id="g0" value="G0｜研究工作量母體&#xa;&#xa;定義：船日 × 公開海纜 5 km 關注帶&#xa;期間：2016–2025&#xa;總數：674,710 筆&#xa;每日中位數：656.5 筆 ≈ 657 筆" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1E5A78;strokeWidth=3;fontFamily=Microsoft JhengHei;fontSize=18;fontColor=#18324A;align=left;spacingLeft=18;" vertex="1" parent="1"><mxGeometry x="60" y="180" width="350" height="245" as="geometry"/></mxCell>
+        <mxCell id="g0tag" value="回答：每天可能要面對多少研究候選？" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF3F7;strokeColor=#1E5A78;fontFamily=Microsoft JhengHei;fontSize=15;fontStyle=1;fontColor=#18324A;" vertex="1" parent="1"><mxGeometry x="90" y="455" width="290" height="58" as="geometry"/></mxCell>
+
+        <mxCell id="gate" value="G1｜資料品質門檻&#xa;&#xa;時間窗是否足夠？&#xa;船位點數是否足夠？&#xa;軌跡與欄位是否完整？&#xa;&#xa;先判斷能否解讀，再進模型。" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2A7F78;strokeWidth=3;fontFamily=Microsoft JhengHei;fontSize=17;fontColor=#18324A;" vertex="1" parent="1"><mxGeometry x="505" y="170" width="340" height="285" as="geometry"/></mxCell>
+        <mxCell id="g1base" value="G1 評估母體：651,729 筆" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF6F3;strokeColor=#2A7F78;fontFamily=Microsoft JhengHei;fontSize=16;fontStyle=1;fontColor=#18324A;" vertex="1" parent="1"><mxGeometry x="535" y="480" width="280" height="68" as="geometry"/></mxCell>
+
+        <mxCell id="eligible" value="可進模型表&#xa;&#xa;23,690 筆&#xa;占 G1 評估母體 3.6%&#xa;&#xa;進入多訊號分析、模型共識／分歧與證據卡產製" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2A7F78;strokeWidth=3;fontFamily=Microsoft JhengHei;fontSize=17;fontColor=#18324A;" vertex="1" parent="1"><mxGeometry x="965" y="135" width="340" height="230" as="geometry"/></mxCell>
+        <mxCell id="needs" value="需補證&#xa;&#xa;628,039 筆&#xa;占 G1 評估母體 96.4%&#xa;&#xa;列出缺少資料；缺測不等於低風險，也不強行給出結論" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF6F3;strokeColor=#A3433E;strokeWidth=3;fontFamily=Microsoft JhengHei;fontSize=17;fontColor=#742F2B;" vertex="1" parent="1"><mxGeometry x="965" y="425" width="340" height="230" as="geometry"/></mxCell>
+
+        <mxCell id="k" value="Top-K｜人工深查預算&#xa;&#xa;K 依班表、事件、海象與政策調整&#xa;競賽示例：K = 5&#xa;&#xa;輸出：優先查核證據卡&#xa;正式人員完成查核、定性與處置" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#7B1E2B;strokeWidth=3;fontFamily=Microsoft JhengHei;fontSize=18;fontColor=#3E1B22;" vertex="1" parent="1"><mxGeometry x="965" y="735" width="340" height="225" as="geometry"/></mxCell>
+
+        <mxCell id="notice" value="閱讀規則｜G0、G1 與 Top-K 的分母及功能不同：&#xa;G0 描述研究候選工作量；G1 判斷資料能否進入分析；Top-K 控制每日深入查核數量。" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E8;strokeColor=#C7952D;strokeWidth=2;fontFamily=Microsoft JhengHei;fontSize=17;fontStyle=1;fontColor=#6A5320;align=left;spacingLeft=18;" vertex="1" parent="1"><mxGeometry x="60" y="735" width="785" height="150" as="geometry"/></mxCell>
+
+        <mxCell id="e01" value="候選資料" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#2A7F78;strokeWidth=3;fontFamily=Microsoft JhengHei;fontSize=14;fontColor=#18324A;" edge="1" parent="1" source="g0" target="gate"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e12" value="資料足夠" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#2A7F78;strokeWidth=3;fontFamily=Microsoft JhengHei;fontSize=14;fontColor=#18324A;" edge="1" parent="1" source="gate" target="eligible"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e13" value="資料不足" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#A3433E;strokeWidth=3;fontFamily=Microsoft JhengHei;fontSize=14;fontColor=#742F2B;" edge="1" parent="1" source="gate" target="needs"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e24" value="依值勤量能排序" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#7B1E2B;strokeWidth=3;fontFamily=Microsoft JhengHei;fontSize=14;fontColor=#3E1B22;" edge="1" parent="1" source="eligible" target="k"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
