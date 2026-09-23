@@ -9,7 +9,7 @@
     "valid_days": 1094,
     "daily_median": 656.5,
     "daily_max": 1084,
-    "note": "G0 曝險盤點；分母不同於 G1 最近海纜建模事件表。"
+    "note": "CableScope 候選工作量；分母不同於最近海纜分析事件表。"
   },
   "data_scale": {
     "raw_ais_rows": 3295161,
@@ -69,7 +69,7 @@
     "if_ae_spearman": 0.8197422116208645,
     "if_ae_daily_top5_jaccard": 0.5224759302628155,
     "maximum_2025_psi": 0.02053512157593251,
-    "known_incidents_decision": "兩案皆因單點觀測而棄權"
+    "known_incidents_decision": "前兩案事故窗各一筆AIS，第三案無事故窗觀測；三案均未形成可排序時序"
   },
   "trajectory": {
     "validation_2024": {
@@ -126,22 +126,22 @@
         "p95": 0.15802031656095308
       }
     },
-    "selection": "GRU 未通過整體中位誤差升格門檻；保留為尾端修正 Challenger。"
+    "selection": "GRU 未通過整體中位誤差門檻；作為獨立航跡預測研究線，未接入查核排序。"
   },
   "decision_policy": [
     "AIS 物理外推：一般穩定航行主預測",
-    "GRU：較難預測尾端的修正與 surprise residual",
-    "Isolation Forest＋Autoencoder：少見船纜互動排序",
-    "Coverage gate：資料不足直接棄權"
+    "GRU：獨立比較下一船位尾端誤差，不作為查核排序輸入",
+    "規則＋Isolation Forest＋Autoencoder：比較近纜事件查核順位及模型分歧",
+    "CableCheck：未符合建模門檻者保留品質原因與補證需求"
   ],
   "insights": [
     {
       "title": "可觀測性是第一道模型",
-      "body": "G1 最近海纜建模事件中只有約 3.6% 具三點以上且通過品質門檻；單點船位不應硬判風險。"
+      "body": "CableCheck 最近海纜事件中只有 3.6% 符合本研究建模門檻；其餘保留補證原因。"
     },
     {
       "title": "罕見不等於危險",
-      "body": "規則與學習模型排序方向不同；快速穿越可能統計罕見卻是正常反例，需人工標註。"
+      "body": "規則與學習模型可提供不同順位；統計罕見不能單獨推論事故或意圖。"
     },
     {
       "title": "深度模型價值在尾端",

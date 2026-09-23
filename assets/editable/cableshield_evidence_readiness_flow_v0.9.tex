@@ -1,0 +1,64 @@
+\documentclass[tikz,border=5pt]{standalone}
+\usepackage{fontspec}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\setmainfont{Microsoft JhengHei}
+\setsansfont{Microsoft JhengHei}
+\definecolor{ink}{HTML}{17324A}
+\definecolor{navy}{HTML}{123B5D}
+\definecolor{teal}{HTML}{187F79}
+\definecolor{gold}{HTML}{B18A3C}
+\definecolor{line}{HTML}{AFC4CF}
+\begin{document}
+\begin{tikzpicture}[
+  font=\sffamily\fontsize{10.8}{13}\selectfont,
+  >=Latex,
+  card/.style={rounded corners=3pt, draw=line, fill=white, line width=.9pt,
+    align=left, text width=6.85cm, minimum height=1.9cm, inner sep=9pt},
+  arrow/.style={-{Latex[length=2.2mm]}, draw=navy, line width=1.1pt},
+  branch/.style={-{Latex[length=2.2mm]}, draw=teal, line width=1.1pt}
+]
+  \useasboundingbox (0,0) rectangle (16,15);
+  \fill[white] (0,0) rectangle (16,15);
+  \node[anchor=west, text=ink, font=\bfseries\fontsize{15}{18}\selectfont] at (.25,14.55)
+    {CableShield-TW｜先檢查證據，再比較查核順位};
+  \node[anchor=west, text=navy, font=\fontsize{9.3}{11}\selectfont] at (.3,13.95)
+    {2023--2025 NODASS 歷史 AIS ＋ 公開概化海纜路由};
+
+  \node[card, text width=14.65cm, minimum height=1.18cm] (source) at (8,12.65)
+    {\textbf{輸入｜}清理後 AIS 3,295,161 筆；5 公里主分析環帶；1,094 個有效日期};
+  \node[card, draw=gold, fill=gold!5] (work) at (4.08,10.05)
+    {\textbf{CableScope｜工作量口徑}\\[4pt]
+     日期 $\times$ 船舶 $\times$ 每條近接海纜\\
+     \textbf{674,710 筆候選}；日中位數 \textbf{656.5，約 657 筆}};
+  \node[card] (event) at (11.92,10.05)
+    {\textbf{CableScope｜分析事件口徑}\\[4pt]
+     AIS 點先歸屬最近概化海纜\\
+     按船／纜／日彙整：\textbf{651,729 筆}\\
+     與工作量使用不同分母};
+  \draw[arrow] (source.south) -- ++(0,-.3) -| (work.north);
+  \draw[arrow] (source.south) -- ++(0,-.3) -| (event.north);
+
+  \node[card, draw=teal, fill=teal!4, text width=14.65cm, minimum height=1.16cm] (gate) at (8,7.65)
+    {\textbf{CableCheck｜}依觀測數、時距、航向及位置品質，判斷是否符合本研究建模門檻};
+  \draw[arrow] (event.south) -- ++(0,-.28) -| (gate.north);
+
+  \node[card, draw=gold, fill=gold!5, minimum height=2.35cm] (missing) at (4.08,4.85)
+    {\textbf{628,039 筆｜96.4\% 保留補證需求}\\[5pt]
+     CableEvidence 記錄未通過原因；\\
+     不產生模型查核順位};
+  \node[card, draw=teal, fill=teal!5, minimum height=2.35cm] (rank) at (11.92,4.85)
+    {\textbf{23,690 筆｜3.6\% 符合建模門檻}\\[5pt]
+     CableRank 比較規則、IF、AE；\\
+     顯示 Top-K 清單與模型分歧};
+  \draw[branch] (gate.south) -- ++(0,-.32) -| (missing.north);
+  \draw[branch] (gate.south) -- ++(0,-.32) -| (rank.north);
+
+  \node[anchor=west, text=ink, font=\fontsize{9.4}{11.3}\selectfont, text width=15.35cm] at (.3,2.35)
+    {\textbf{介接輸出｜}事件表、品質原因、排序依據、模型分歧、證據缺口與來源版本，供國家海洋研究院評估。};
+  \node[anchor=west, text=navy, font=\fontsize{8.7}{10.6}\selectfont, text width=15.35cm] at (.3,1.45)
+    {\textbf{口徑註記｜}657 是工作量的日中位數；3.6\% 以 651,729 筆分析事件為分母，兩者不能相乘。K＝5 是競賽人力情境。};
+  \node[anchor=west, text=navy, font=\fontsize{8.7}{10.6}\selectfont, text width=15.35cm] at (.3,.55)
+    {公開概化路由非實際纜位；本圖不代表正式告警、事故辨識、人工驗證或已完成介接。};
+\end{tikzpicture}
+\end{document}

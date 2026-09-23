@@ -11,7 +11,7 @@
         "name": "24海浬內",
         "events": 7,
         "headline": "6起人為因素",
-        "detail": "船錨3、疑似外力2、漁撈1、自然耗損1；適合作為船舶威脅層的外部事件母體。"
+        "detail": "船錨3、疑似外力2、漁撈1、自然耗損1；僅供建立外部事件背景，無法直接對應逐船模型真值。"
       },
       {
         "name": "24海浬外",
@@ -21,12 +21,27 @@
       }
     ],
     "comparison_funnel": [
-      {"label": "報告事件母體", "count": 32, "reason": "2025年表4至表6"},
-      {"label": "近岸人為事件", "count": 6, "reason": "屬船舶行為監測範圍"},
-      {"label": "可連結公開船名", "count": 3, "reason": "由官方或司法來源補齊"},
-      {"label": "事故前序列可評分", "count": 0, "reason": "現有AIS均未通過coverage gate"}
-    ],
-    "recommended_scores": ["行為風險", "證據覆蓋", "資產後果"]
+      {
+        "label": "報告事件母體",
+        "count": 32,
+        "reason": "2025年表4至表6"
+      },
+      {
+        "label": "近岸人為事件",
+        "count": 6,
+        "reason": "屬船舶行為監測範圍"
+      },
+      {
+        "label": "可連結公開船名",
+        "count": 3,
+        "reason": "由官方或司法來源補齊"
+      },
+      {
+        "label": "事故前序列可評分",
+        "count": 0,
+        "reason": "現有AIS均未通過coverage gate"
+      }
+    ]
   },
   "cases": [
     {
@@ -119,36 +134,6 @@
       ]
     }
   ],
-  "learning_loop": {
-    "status": "controlled_local_contract_implemented; public_scheduler_not_running",
-    "steps": [
-      {
-        "name": "品質閘門與隔離",
-        "detail": "點數不足、缺訊過長、身分衝突、來源過期、分布外或幾何不確定時，事件退出Top-K並進入需補證佇列。"
-      },
-      {
-        "name": "結構化人工複核",
-        "detail": "保留匿名審查者、判斷、信心、理由、證據ID、證據權威與標籤可用時間；紀錄只能追加。"
-      },
-      {
-        "name": "回訓候選閘門",
-        "detail": "一般標籤需信心達0.8；事故關聯標籤需兩位獨立審查者及至少一項官方結果。新聞只能作脈絡。"
-      },
-      {
-        "name": "Champion–Challenger",
-        "detail": "新標籤只進候選資料集；依時間切分重訓Challenger，通過封存測試、校準與coverage門檻後，再由人核准升格。"
-      }
-    ],
-    "proposed_cadence": [
-      "新資料快照：重算品質與事件特徵",
-      "每週：檢查隔離佇列與來源健康",
-      "每月：檢查資料漂移、尾端誤差與人工分歧",
-      "每季或門檻觸發：訓練Challenger並封存評估"
-    ],
-    "automatic_weight_update": false,
-    "known_case_quarantine_count": 3,
-    "known_case_training_candidate_count": 0
-  },
   "policy_context": {
     "label": "數位發展部114年度臺灣海底通訊電纜損害原因分析及策進報告",
     "url": "https://moda.gov.tw/press/press-releases/19392",
