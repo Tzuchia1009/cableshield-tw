@@ -1,0 +1,76 @@
+\documentclass[tikz,border=5pt]{standalone}
+\usepackage{fontspec}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+\setmainfont{Microsoft JhengHei}
+\setsansfont{Microsoft JhengHei}
+\definecolor{ink}{HTML}{17324A}
+\definecolor{navy}{HTML}{123B5D}
+\definecolor{teal}{HTML}{187F79}
+\definecolor{gold}{HTML}{B18A3C}
+\definecolor{line}{HTML}{AFC4CF}
+\begin{document}
+\begin{tikzpicture}[
+  font=\sffamily\fontsize{9.4}{11.5}\selectfont,
+  >=Latex,
+  box/.style={rounded corners=3pt, draw=line, fill=white, line width=.85pt,
+    align=left, inner sep=7pt},
+  flow/.style={-{Latex[length=2mm]}, draw=navy, line width=1pt},
+  subflow/.style={-{Latex[length=2mm]}, draw=teal, line width=.95pt}
+]
+  \useasboundingbox (0,0) rectangle (16,14.6);
+  \fill[white] (0,0) rectangle (16,14.6);
+  \node[anchor=west, text=ink, font=\bfseries\fontsize{14.5}{17}\selectfont] at (.22,14.2)
+    {CableRank｜證據條件下的查核排序模型架構};
+  \node[anchor=west, text=navy, font=\fontsize{8.7}{10.5}\selectfont] at (.25,13.63)
+    {CableCheck 通過建模門檻後進入本流程；2023 訓練／參照、2024 驗證、2025 封存測試};
+
+  \node[box, text width=14.85cm, minimum height=.82cm, draw=navy, fill=navy!4] (input) at (8,12.55)
+    {\textbf{事件特徵輸入}｜近纜與運動特徵共 18 項；事件單位為船舶－最近概化海纜－日};
+  \node[box, text width=9.55cm, minimum height=.82cm, draw=teal, fill=teal!4] (prep) at (10.62,11.05)
+    {\textbf{學習模型共用前處理}\\[3pt]
+     中位數補值 $\rightarrow$ 0.5--99.5\% 截限 $\rightarrow$ \mbox{RobustScaler}};
+  \draw[flow] (input.south) -- ++(0,-.18) -| (prep.north);
+
+  \node[box, text width=4.45cm, minimum height=2.22cm, draw=gold, fill=gold!5] (rule) at (2.71,8.47)
+    {\textbf{規則基線 $R$}\\[5pt]
+     近纜、低速、AIS 錨泊狀態、\\
+     轉向、低速停留；各項截限至 $[0,1]$。\\[5pt]
+     $r_e=\sum_{j=1}^{5}w_j f_j(e)$\\[-1pt]
+     $\mathbf w=(.30,.25,.15,.15,.15)$};
+  \node[box, text width=4.45cm, minimum height=2.22cm, draw=teal, fill=teal!4] (iforest) at (8,8.47)
+    {\textbf{Isolation Forest $\mathrm{IF}$}\\[5pt]
+     18 維標準化特徵；300 棵樹。\\[8pt]
+     $a_{\mathrm{IF}}(e)=-\operatorname{score\_samples}(\mathbf x_e)$};
+  \node[box, text width=4.45cm, minimum height=2.22cm, draw=teal, fill=teal!4] (ae) at (13.29,8.47)
+    {\textbf{自編碼器 $\mathrm{AE}$}\\[5pt]
+     $18\rightarrow32\rightarrow16\rightarrow6\rightarrow16\rightarrow32\rightarrow18$\\[5pt]
+     GELU；2,488 參數；Smooth L1 訓練。\\[3pt]
+     $a_{\mathrm{AE}}(e)=\|\mathbf x_e-\hat{\mathbf x}_e\|_2^2/18$};
+  \draw[flow] ([xshift=-5.29cm]input.south) -- (rule.north);
+  \draw[subflow] (prep.south) -- ++(0,-.2) -| (iforest.north);
+  \draw[subflow] (prep.south) -- ++(0,-.2) -| (ae.north);
+
+  \node[box, text width=14.85cm, minimum height=.9cm, draw=navy, fill=navy!3] (percentile) at (8,5.85)
+    {\textbf{共同尺度｜}各原始分數依 2023 年訓練參照經驗分布轉為百分位：
+     $P_R=F_R^{2023}(r_e)$，$P_{\mathrm{IF}}=F_{\mathrm{IF}}^{2023}(a_{\mathrm{IF}})$，
+     $P_{\mathrm{AE}}=F_{\mathrm{AE}}^{2023}(a_{\mathrm{AE}})$。};
+  \draw[flow] (rule.south) -- ++(0,-.27) -| ([xshift=-5.15cm]percentile.north);
+  \draw[flow] (iforest.south) -- (percentile.north);
+  \draw[flow] (ae.south) -- ++(0,-.27) -| ([xshift=5.15cm]percentile.north);
+
+  \node[box, text width=14.85cm, minimum height=.86cm, draw=teal, fill=teal!5] (blend) at (8,4.33)
+    {\textbf{等權組合與順位｜}$S_e=(P_R+P_{\mathrm{IF}}+P_{\mathrm{AE}})/3$；依日期產生 Top-$K$ 查核清單，並保留三方法個別順位與分歧。};
+  \draw[flow] (percentile.south) -- (blend.north);
+  \node[box, text width=14.85cm, minimum height=.9cm, draw=navy, fill=navy!3] (evidence) at (8,2.85)
+    {\textbf{CableEvidence 輸出｜}事件特徵、資料品質、規則／模型分數、順位分歧及補證項目；$K=5$ 為競賽查核量能示例。};
+  \draw[flow] (blend.south) -- (evidence.north);
+
+  \node[box, text width=14.85cm, minimum height=.84cm, draw=gold, fill=gold!4] at (8,1.35)
+    {\textbf{獨立延伸｜CableTrack}　5 筆 AIS 序列 $\rightarrow$ 兩層 GRU（隱藏維度 64）$\rightarrow$ 下一觀測位置；對照速度／航向物理外推。\textbf{不接入 CableRank 排序。}};
+  \node[anchor=west, text=navy, font=\fontsize{8.1}{9.8}\selectfont] at (.25,.45)
+    {註：$e$ 為事件，$\mathbf x_e\in\mathbb R^{18}$ 為前處理後特徵；分數是查核排序訊號，不是事故或責任判定。};
+\end{tikzpicture}
+\end{document}

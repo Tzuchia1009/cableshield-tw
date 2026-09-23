@@ -1,5 +1,5 @@
 # CableShield-TW｜海纜近接事件資料可判性與查核排序系統
-更新：2026-09-23 · 研究定位 v0.9
+更新：2026-09-23 · 研究定位 v1.0
 
 **英文題名：** CableShield-TW: Evidence Readiness and Triage for Subsea Cable Encounters
 
@@ -8,6 +8,12 @@
 ![CableShield-TW 資料可判性與查核排序流程](./assets/cableshield_evidence_readiness_flow_v0.9.png)
 
 [下載向量 PDF](./assets/cableshield_evidence_readiness_flow_v0.9.pdf) · [下載可編輯 LaTeX 圖檔](./assets/editable/cableshield_evidence_readiness_flow_v0.9.tex)
+
+### CableRank 模型架構
+
+![CableRank 模型架構：規則、Isolation Forest、自編碼器與查核順位](./assets/cableshield_model_architecture_v1.0.png)
+
+[下載模型架構圖 PDF](./assets/cableshield_model_architecture_v1.0.pdf) · [下載可編輯 LaTeX 原始檔](./assets/editable/cableshield_model_architecture_v1.0.tex)
 
 | 研究口徑 | 結果 | 意義 |
 |---|---:|---|

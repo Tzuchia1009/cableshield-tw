@@ -1,6 +1,6 @@
 # CableShield-TW 公開展示說明
 
-更新：2026-09-23 · v0.9。正式題名為「海纜近接事件資料可判性與查核排序系統」；英文為 *CableShield-TW: Evidence Readiness and Triage for Subsea Cable Encounters*。
+更新：2026-09-23 · v1.0。正式題名為「海纜近接事件資料可判性與查核排序系統」；英文為 *CableShield-TW: Evidence Readiness and Triage for Subsea Cable Encounters*。
 
 公開頁展示匿名、概化的歷史 AIS 樣本、公開概化海纜路由及合成情境。它不是即時船位、正式警報或事故判定工具。地圖中的公開樣本不附個體查核分數；模型頁呈現離線彙總證據。既有本機查核筆記程式僅為資料契約演練，未納入本屆公開操作、人工驗證或模型回訓。
 
@@ -16,4 +16,4 @@
 
 本屆實際使用的 NODASS 資料為 2023–2025 年 AIS；外部公開概化路由僅用於一致的近接研究，並非實際纜位。半合成測試不等於事故準確率；K=5 為競賽人力情境，未經值勤單位確認。未執行人工使用者驗證、未以人工回饋重訓，亦未完成國家海洋研究院正式介接。
 
-[提案與研究結論](./PROPOSAL.md) · [流程圖 PDF](./assets/cableshield_evidence_readiness_flow_v0.9.pdf) · [可編輯 LaTeX 圖檔](./assets/editable/cableshield_evidence_readiness_flow_v0.9.tex)。
+[提案與研究結論](./PROPOSAL.md) · [系統流程圖 PDF](./assets/cableshield_evidence_readiness_flow_v0.9.pdf) · [CableRank 模型架構圖 PDF](./assets/cableshield_model_architecture_v1.0.pdf) · [模型圖可編輯 LaTeX 原始檔](./assets/editable/cableshield_model_architecture_v1.0.tex)。
