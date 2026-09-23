@@ -1,5 +1,5 @@
 {
-  "version": "0.5.0",
+  "version": "0.6.0",
   "status": "trained_with_limits",
   "completed_at": "2026-09-10T11:33:46.659224+08:00",
   "public_scope": "Aggregate metrics only; no controlled AIS rows, vessel identities, event coordinates, or model weights.",
@@ -34,6 +34,26 @@
         "sequences": 19786
       }
     }
+  },
+  "quality_gate_sensitivity": {
+    "computed_at": "2026-09-23",
+    "denominator": 651729,
+    "single_observation_events": 547490,
+    "single_observation_share": 0.8400577540664909,
+    "baseline": {"min_observations": 3, "max_gap_hours": 6, "eligible_events": 23690},
+    "fixed_conditions": "首末跨度至少2小時、有效COG比例至少50%、跳躍旗標比例不超過20%；5公里事件母體固定",
+    "matrix": [
+      {"min_observations": 2, "max_gap_hours": 3, "eligible_events": 31713},
+      {"min_observations": 2, "max_gap_hours": 6, "eligible_events": 48888},
+      {"min_observations": 2, "max_gap_hours": 12, "eligible_events": 64634},
+      {"min_observations": 3, "max_gap_hours": 3, "eligible_events": 15652},
+      {"min_observations": 3, "max_gap_hours": 6, "eligible_events": 23690},
+      {"min_observations": 3, "max_gap_hours": 12, "eligible_events": 31045},
+      {"min_observations": 4, "max_gap_hours": 3, "eligible_events": 6370},
+      {"min_observations": 4, "max_gap_hours": 6, "eligible_events": 11432},
+      {"min_observations": 4, "max_gap_hours": 12, "eligible_events": 15885}
+    ],
+    "interpretation": "3.6%依門檻改變；84.0%的5公里事件只有一個AIS點。替代設定只重算條件通過數，未重算特徵或重訓模型；單點不等於來源缺訊。"
   },
   "models": [
     {
@@ -137,7 +157,7 @@
   "insights": [
     {
       "title": "可觀測性是第一道模型",
-      "body": "CableCheck 最近海纜事件中只有 3.6% 符合本研究建模門檻；其餘保留補證原因。"
+      "body": "3.6% 是原模型門檻下的納入比例；九組替代設定的條件通過率為 1.0% 至 9.9%。84.0% 的5公里事件只有一個 AIS 點。"
     },
     {
       "title": "罕見不等於危險",
