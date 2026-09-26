@@ -1,4 +1,4 @@
-import {openEpisodeModelDialog} from './episode-models.js';
+import {openEpisodeModelDialog} from './episode-models.js?v=formal-20260926';
 import {mountMonitoring} from './monitoring.js?v=episode-rank-20260926';
 import {HistoryProvider,SimulationProvider,readJSON,escapeHTML as esc,latestObservation,formatTime,navLabels} from './data.js';
 import {OceanMap,shipSVG,shortCable} from './chart-map.js';

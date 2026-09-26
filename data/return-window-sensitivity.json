@@ -1,0 +1,46 @@
+{
+  "schema_version": "return-window-sensitivity-1.0.0",
+  "analysis_date": "2026-09-26",
+  "episode_population": 699868,
+  "fixed_segmentation": {
+    "entry_km": 5,
+    "exit_km": 6,
+    "max_gap_hours": 6
+  },
+  "counting_unit": "有觀測支持的返回片段，每個片段在各窗口最多計一次",
+  "return_interval": "前次片段末次觀測至本片段首次觀測的時間差，含窗口端點；須有觀測支持離開後再進入",
+  "purpose": "24小時為本研究設定的短期返回觀察窗口，用於形成可管理的查核線索，並非官方風險判定門檻，實際介接時可依勤務需求調整。",
+  "limitations": "固定片段切分，只改變返回線索納入範圍；不改變片段總數、模型母體或分數，不據此判定最適窗口。",
+  "results": [
+    {
+      "window_hours": 12,
+      "confirmed_returns": 14750,
+      "not_model_eligible": 13133,
+      "by_year": {
+        "2023": 6112,
+        "2024": 5195,
+        "2025": 3443
+      }
+    },
+    {
+      "window_hours": 24,
+      "confirmed_returns": 18441,
+      "not_model_eligible": 16563,
+      "by_year": {
+        "2023": 7762,
+        "2024": 6458,
+        "2025": 4221
+      }
+    },
+    {
+      "window_hours": 48,
+      "confirmed_returns": 18886,
+      "not_model_eligible": 16922,
+      "by_year": {
+        "2023": 7960,
+        "2024": 6619,
+        "2025": 4307
+      }
+    }
+  ]
+}
