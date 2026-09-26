@@ -1,0 +1,101 @@
+{
+  "contract_version": "episode-v2.0.0",
+  "created_at": "2026-09-26T11:08:52.136390+08:00",
+  "crs": "EPSG:3826",
+  "time_basis": "naive source provisionally Asia/Taipei; UTC stored",
+  "entry_km": 5,
+  "exit_km": 6,
+  "max_gap_hours": 6,
+  "sample_spacing_m": 500,
+  "cable_assignment": "all individually evaluated cables with rfs_year <= observation year; annual approximation",
+  "warning": "Schematic routes only. Observed spans are not continuous dwell. Reentry is a review signal, not intent or accident.",
+  "ais_sha256": "f09330c0b98fbddc352cd306cb702faacceef3b29630ab6c4507de336423da18",
+  "cable_sha256": "5b2cd8acd9da1c60072c8d2d8c134953cea76e354b693ddbcfea7fc8aab08545",
+  "accounting": {
+    "raw_rows": 3295161,
+    "missing_identity_or_time": 0,
+    "exact_duplicate_rows": 0,
+    "conflicting_timestamp_rows": 0,
+    "conflicting_extra_rows_collapsed": 0,
+    "retained_unique_timestamps": 3295161,
+    "bad_fix_break_markers": 33225,
+    "gap_hours_quantiles": {
+      "0.5": 7.0,
+      "0.9": 511.0,
+      "0.95": 1347.0,
+      "0.99": 6037.0
+    },
+    "gaps_over_6h": 1608179
+  },
+  "episodes": 699868,
+  "vessel_cable_days": 675020,
+  "episode_day_links": 717959,
+  "multi_episode_days": 41182,
+  "confirmed_reentries": 19002,
+  "repeat_within_24h": 18441,
+  "confirmed_reentry_days": 17739,
+  "uncertain_reappearances": 535939,
+  "repeat_not_model_eligible": 16563,
+  "model_eligible": 39280,
+  "cross_year_episodes": 29,
+  "sensitivity": [
+    {
+      "entry_km": 5,
+      "exit_km": 6,
+      "gap_hours": 6,
+      "episodes": 699868,
+      "confirmed_reentries": 19002,
+      "repeat_within_24h": 18441
+    },
+    {
+      "entry_km": 5,
+      "exit_km": 5.5,
+      "gap_hours": 6,
+      "episodes": 700740,
+      "confirmed_reentries": 19874,
+      "repeat_within_24h": 19300
+    },
+    {
+      "entry_km": 5,
+      "exit_km": 6.5,
+      "gap_hours": 6,
+      "episodes": 699078,
+      "confirmed_reentries": 18212,
+      "repeat_within_24h": 17667
+    },
+    {
+      "entry_km": 5,
+      "exit_km": 6,
+      "gap_hours": 3,
+      "episodes": 732684,
+      "confirmed_reentries": 10684,
+      "repeat_within_24h": 10621
+    },
+    {
+      "entry_km": 5,
+      "exit_km": 6,
+      "gap_hours": 9,
+      "episodes": 685079,
+      "confirmed_reentries": 24519,
+      "repeat_within_24h": 23212
+    }
+  ],
+  "model_status": "v2 model not trained; v1 scores must not be attached to v2 episodes",
+  "year_counts": {
+    "2023": {
+      "episodes": 250203,
+      "model_eligible": 15398,
+      "repeat_within_24h": 7762
+    },
+    "2024": {
+      "episodes": 245489,
+      "model_eligible": 13993,
+      "repeat_within_24h": 6458
+    },
+    "2025": {
+      "episodes": 204176,
+      "model_eligible": 9889,
+      "repeat_within_24h": 4221
+    }
+  }
+}
