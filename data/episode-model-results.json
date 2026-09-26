@@ -1,0 +1,1386 @@
+{
+  "experiment_id": "cableshield_episode_rank_20260926",
+  "contract_version": "episode-rank-1.0.0",
+  "input_contract": "episode-v2.0.0",
+  "event_unit": "vessel-cable approach episode",
+  "population": {
+    "contract_version": "episode-v2.0.0",
+    "created_at": "2026-09-26T11:08:52.136390+08:00",
+    "crs": "EPSG:3826",
+    "time_basis": "naive source provisionally Asia/Taipei; UTC stored",
+    "entry_km": 5,
+    "exit_km": 6,
+    "max_gap_hours": 6,
+    "sample_spacing_m": 500,
+    "cable_assignment": "all individually evaluated cables with rfs_year <= observation year; annual approximation",
+    "warning": "Schematic routes only. Observed spans are not continuous dwell. Reentry is a review signal, not intent or accident.",
+    "ais_sha256": "f09330c0b98fbddc352cd306cb702faacceef3b29630ab6c4507de336423da18",
+    "cable_sha256": "5b2cd8acd9da1c60072c8d2d8c134953cea76e354b693ddbcfea7fc8aab08545",
+    "accounting": {
+      "raw_rows": 3295161,
+      "missing_identity_or_time": 0,
+      "exact_duplicate_rows": 0,
+      "conflicting_timestamp_rows": 0,
+      "conflicting_extra_rows_collapsed": 0,
+      "retained_unique_timestamps": 3295161,
+      "bad_fix_break_markers": 33225,
+      "gap_hours_quantiles": {
+        "0.5": 7.0,
+        "0.9": 511.0,
+        "0.95": 1347.0,
+        "0.99": 6037.0
+      },
+      "gaps_over_6h": 1608179
+    },
+    "episodes": 699868,
+    "vessel_cable_days": 675020,
+    "episode_day_links": 717959,
+    "multi_episode_days": 41182,
+    "confirmed_reentries": 19002,
+    "repeat_within_24h": 18441,
+    "confirmed_reentry_days": 17739,
+    "uncertain_reappearances": 535939,
+    "repeat_not_model_eligible": 16563,
+    "model_eligible": 39280,
+    "cross_year_episodes": 29,
+    "sensitivity": [
+      {
+        "entry_km": 5,
+        "exit_km": 6,
+        "gap_hours": 6,
+        "episodes": 699868,
+        "confirmed_reentries": 19002,
+        "repeat_within_24h": 18441
+      },
+      {
+        "entry_km": 5,
+        "exit_km": 5.5,
+        "gap_hours": 6,
+        "episodes": 700740,
+        "confirmed_reentries": 19874,
+        "repeat_within_24h": 19300
+      },
+      {
+        "entry_km": 5,
+        "exit_km": 6.5,
+        "gap_hours": 6,
+        "episodes": 699078,
+        "confirmed_reentries": 18212,
+        "repeat_within_24h": 17667
+      },
+      {
+        "entry_km": 5,
+        "exit_km": 6,
+        "gap_hours": 3,
+        "episodes": 732684,
+        "confirmed_reentries": 10684,
+        "repeat_within_24h": 10621
+      },
+      {
+        "entry_km": 5,
+        "exit_km": 6,
+        "gap_hours": 9,
+        "episodes": 685079,
+        "confirmed_reentries": 24519,
+        "repeat_within_24h": 23212
+      }
+    ],
+    "model_status": "v2 model not trained; v1 scores must not be attached to v2 episodes",
+    "year_counts": {
+      "2023": {
+        "episodes": 250203,
+        "model_eligible": 15398,
+        "repeat_within_24h": 7762
+      },
+      "2024": {
+        "episodes": 245489,
+        "model_eligible": 13993,
+        "repeat_within_24h": 6458
+      },
+      "2025": {
+        "episodes": 204176,
+        "model_eligible": 9889,
+        "repeat_within_24h": 4221
+      }
+    }
+  },
+  "eligible_by_year": {
+    "2023": 15398,
+    "2024": 13993,
+    "2025": 9889
+  },
+  "split": {
+    "2023": "training; internal temporal early stopping",
+    "2024": "validation",
+    "2025": "retrospective cross-year test; previously inspected"
+  },
+  "ranking_day": "Asia/Taipei date of last observed point; retrospective, not real-time availability",
+  "tie_break": "ascending episode_id; individual methods use raw scores, ensemble uses mean training-reference percentiles",
+  "features": [
+    "min_distance_km",
+    "mean_distance_km",
+    "distance_std_km",
+    "log_observation_count",
+    "duration_hours",
+    "mean_sog_knots",
+    "min_sog_knots",
+    "std_sog_knots",
+    "low_speed_fraction_1kt",
+    "low_speed_fraction_3kt",
+    "anchored_fraction",
+    "mean_cross_angle_deg",
+    "perpendicular_fraction",
+    "path_length_km",
+    "tortuosity",
+    "mean_turn_deg",
+    "turn_45_fraction",
+    "approach_rate_kmh"
+  ],
+  "parameter_count": 2488,
+  "seed_results": [
+    {
+      "seed": 20260910,
+      "epochs": 80,
+      "stress": {
+        "n": 4000,
+        "vessels": 1183,
+        "methods": {
+          "rule": {
+            "auroc": 0.9999999999999999,
+            "paired_uplift": 1.0,
+            "auroc_ci95": [
+              0.9999999999999999,
+              1.0
+            ],
+            "uplift_ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "isolation": {
+            "auroc": 0.9892278125,
+            "paired_uplift": 0.9995,
+            "auroc_ci95": [
+              0.9861060313610547,
+              0.9921856111173963
+            ],
+            "uplift_ci95": [
+              0.9984020443841872,
+              1.0
+            ]
+          },
+          "autoencoder": {
+            "auroc": 0.9767835624999999,
+            "paired_uplift": 0.99575,
+            "auroc_ci95": [
+              0.972841635075477,
+              0.9803894245297312
+            ],
+            "uplift_ci95": [
+              0.9931890118373649,
+              0.9979655879465201
+            ]
+          },
+          "ensemble": {
+            "auroc": 0.9990659375000001,
+            "paired_uplift": 1.0,
+            "auroc_ci95": [
+              0.9981558254741173,
+              0.9996240726048985
+            ],
+            "uplift_ci95": [
+              1.0,
+              1.0
+            ]
+          }
+        },
+        "interpretation": "feature perturbation sensitivity; not accident detection performance"
+      }
+    },
+    {
+      "seed": 20260911,
+      "epochs": 80,
+      "stress": {
+        "n": 4000,
+        "vessels": 1183,
+        "methods": {
+          "rule": {
+            "auroc": 0.9999999999999999,
+            "paired_uplift": 1.0,
+            "auroc_ci95": null,
+            "uplift_ci95": null
+          },
+          "isolation": {
+            "auroc": 0.988178,
+            "paired_uplift": 0.99925,
+            "auroc_ci95": null,
+            "uplift_ci95": null
+          },
+          "autoencoder": {
+            "auroc": 0.9756959999999999,
+            "paired_uplift": 0.994,
+            "auroc_ci95": null,
+            "uplift_ci95": null
+          },
+          "ensemble": {
+            "auroc": 0.9988915625,
+            "paired_uplift": 1.0,
+            "auroc_ci95": null,
+            "uplift_ci95": null
+          }
+        },
+        "interpretation": "feature perturbation sensitivity; not accident detection performance"
+      },
+      "primary_rank_spearman_2025": 0.9543696436106579
+    },
+    {
+      "seed": 20260912,
+      "epochs": 80,
+      "stress": {
+        "n": 4000,
+        "vessels": 1183,
+        "methods": {
+          "rule": {
+            "auroc": 0.9999999999999999,
+            "paired_uplift": 1.0,
+            "auroc_ci95": null,
+            "uplift_ci95": null
+          },
+          "isolation": {
+            "auroc": 0.9920336875,
+            "paired_uplift": 0.9995,
+            "auroc_ci95": null,
+            "uplift_ci95": null
+          },
+          "autoencoder": {
+            "auroc": 0.9833647499999999,
+            "paired_uplift": 0.99575,
+            "auroc_ci95": null,
+            "uplift_ci95": null
+          },
+          "ensemble": {
+            "auroc": 0.999278875,
+            "paired_uplift": 0.99975,
+            "auroc_ci95": null,
+            "uplift_ci95": null
+          }
+        },
+        "interpretation": "feature perturbation sensitivity; not accident detection performance"
+      },
+      "primary_rank_spearman_2025": 0.9649751910642974
+    }
+  ],
+  "agreement": {
+    "2023": [
+      {
+        "a": "rule",
+        "b": "isolation",
+        "k": 1,
+        "spearman": -0.24876199883479333,
+        "mean": 0.06575342465753424,
+        "ci95": [
+          0.038356164383561646,
+          0.09041095890410959
+        ],
+        "days": 365
+      },
+      {
+        "a": "rule",
+        "b": "isolation",
+        "k": 3,
+        "spearman": -0.24876199883479333,
+        "mean": 0.08082191780821918,
+        "ci95": [
+          0.06506164383561644,
+          0.09356849315068493
+        ],
+        "days": 365
+      },
+      {
+        "a": "rule",
+        "b": "isolation",
+        "k": 5,
+        "spearman": -0.24876199883479333,
+        "mean": 0.08624701021961297,
+        "ci95": [
+          0.07540579473798652,
+          0.09697407045009786
+        ],
+        "days": 365
+      },
+      {
+        "a": "rule",
+        "b": "isolation",
+        "k": 10,
+        "spearman": -0.24876199883479333,
+        "mean": 0.12449840497891729,
+        "ci95": [
+          0.11388270443642808,
+          0.13600733169761753
+        ],
+        "days": 365
+      },
+      {
+        "a": "rule",
+        "b": "autoencoder",
+        "k": 1,
+        "spearman": -0.06644524795746659,
+        "mean": 0.06027397260273973,
+        "ci95": [
+          0.038356164383561646,
+          0.0821917808219178
+        ],
+        "days": 365
+      },
+      {
+        "a": "rule",
+        "b": "autoencoder",
+        "k": 3,
+        "spearman": -0.06644524795746659,
+        "mean": 0.07424657534246575,
+        "ci95": [
+          0.06369178082191781,
+          0.08795890410958901
+        ],
+        "days": 365
+      },
+      {
+        "a": "rule",
+        "b": "autoencoder",
+        "k": 5,
+        "spearman": -0.06644524795746659,
+        "mean": 0.09440095672972386,
+        "ci95": [
+          0.08376250271798218,
+          0.10556126331811264
+        ],
+        "days": 365
+      },
+      {
+        "a": "rule",
+        "b": "autoencoder",
+        "k": 10,
+        "spearman": -0.06644524795746659,
+        "mean": 0.15803062547623387,
+        "ci95": [
+          0.14646010610629553,
+          0.16994540381818254
+        ],
+        "days": 365
+      },
+      {
+        "a": "rule",
+        "b": "ensemble",
+        "k": 1,
+        "spearman": 0.3163370339917708,
+        "mean": 0.2493150684931507,
+        "ci95": [
+          0.20273972602739726,
+          0.29041095890410956
+        ],
+        "days": 365
+      },
+      {
+        "a": "rule",
+        "b": "ensemble",
+        "k": 3,
+        "spearman": 0.3163370339917708,
+        "mean": 0.2093150684931507,
+        "ci95": [
+          0.1882191780821918,
+          0.23033561643835612
+        ],
+        "days": 365
+      },
+      {
+        "a": "rule",
+        "b": "ensemble",
+        "k": 5,
+        "spearman": 0.3163370339917708,
+        "mean": 0.23236573168080019,
+        "ci95": [
+          0.21760627310284844,
+          0.2487081430745814
+        ],
+        "days": 365
+      },
+      {
+        "a": "rule",
+        "b": "ensemble",
+        "k": 10,
+        "spearman": 0.3163370339917708,
+        "mean": 0.30711880751110576,
+        "ci95": [
+          0.293815433080192,
+          0.3208832371312756
+        ],
+        "days": 365
+      },
+      {
+        "a": "isolation",
+        "b": "autoencoder",
+        "k": 1,
+        "spearman": 0.7314822621288957,
+        "mean": 0.1506849315068493,
+        "ci95": [
+          0.11232876712328767,
+          0.1863013698630137
+        ],
+        "days": 365
+      },
+      {
+        "a": "isolation",
+        "b": "autoencoder",
+        "k": 3,
+        "spearman": 0.7314822621288957,
+        "mean": 0.21589041095890413,
+        "ci95": [
+          0.19191095890410959,
+          0.23783561643835613
+        ],
+        "days": 365
+      },
+      {
+        "a": "isolation",
+        "b": "autoencoder",
+        "k": 5,
+        "spearman": 0.7314822621288957,
+        "mean": 0.2609371602522287,
+        "ci95": [
+          0.24132229832572297,
+          0.2787271689497717
+        ],
+        "days": 365
+      },
+      {
+        "a": "isolation",
+        "b": "autoencoder",
+        "k": 10,
+        "spearman": 0.7314822621288957,
+        "mean": 0.39322882987584623,
+        "ci95": [
+          0.37403793744319214,
+          0.410890142167656
+        ],
+        "days": 365
+      },
+      {
+        "a": "isolation",
+        "b": "ensemble",
+        "k": 1,
+        "spearman": 0.7590961348244523,
+        "mean": 0.20821917808219179,
+        "ci95": [
+          0.16568493150684932,
+          0.24801369863013692
+        ],
+        "days": 365
+      },
+      {
+        "a": "isolation",
+        "b": "ensemble",
+        "k": 3,
+        "spearman": 0.7590961348244523,
+        "mean": 0.23205479452054795,
+        "ci95": [
+          0.20856849315068493,
+          0.25744520547945204
+        ],
+        "days": 365
+      },
+      {
+        "a": "isolation",
+        "b": "ensemble",
+        "k": 5,
+        "spearman": 0.7590961348244523,
+        "mean": 0.2645901282887584,
+        "ci95": [
+          0.24729343335507717,
+          0.28290334855403343
+        ],
+        "days": 365
+      },
+      {
+        "a": "isolation",
+        "b": "ensemble",
+        "k": 10,
+        "spearman": 0.7590961348244523,
+        "mean": 0.40410353108728786,
+        "ci95": [
+          0.3847961518786193,
+          0.42235269032700007
+        ],
+        "days": 365
+      },
+      {
+        "a": "autoencoder",
+        "b": "ensemble",
+        "k": 1,
+        "spearman": 0.8608604377552326,
+        "mean": 0.25753424657534246,
+        "ci95": [
+          0.22321917808219177,
+          0.3013698630136986
+        ],
+        "days": 365
+      },
+      {
+        "a": "autoencoder",
+        "b": "ensemble",
+        "k": 3,
+        "spearman": 0.8608604377552326,
+        "mean": 0.3361643835616439,
+        "ci95": [
+          0.3142191780821918,
+          0.3596095890410959
+        ],
+        "days": 365
+      },
+      {
+        "a": "autoencoder",
+        "b": "ensemble",
+        "k": 5,
+        "spearman": 0.8608604377552326,
+        "mean": 0.3896499238964993,
+        "ci95": [
+          0.3693292020004349,
+          0.4069762448358339
+        ],
+        "days": 365
+      },
+      {
+        "a": "autoencoder",
+        "b": "ensemble",
+        "k": 10,
+        "spearman": 0.8608604377552326,
+        "mean": 0.5308229732484365,
+        "ci95": [
+          0.5125022410215803,
+          0.5467357221970437
+        ],
+        "days": 365
+      }
+    ],
+    "2024": [
+      {
+        "a": "rule",
+        "b": "isolation",
+        "k": 1,
+        "spearman": -0.20566096349961313,
+        "mean": 0.08743169398907104,
+        "ci95": [
+          0.05737704918032787,
+          0.11748633879781421
+        ],
+        "days": 366
+      },
+      {
+        "a": "rule",
+        "b": "isolation",
+        "k": 3,
+        "spearman": -0.20566096349961313,
+        "mean": 0.08251366120218578,
+        "ci95": [
+          0.07088114754098361,
+          0.0951092896174863
+        ],
+        "days": 366
+      },
+      {
+        "a": "rule",
+        "b": "isolation",
+        "k": 5,
+        "spearman": -0.20566096349961313,
+        "mean": 0.10807528840315726,
+        "ci95": [
+          0.09481931433775696,
+          0.12112065226819325
+        ],
+        "days": 366
+      },
+      {
+        "a": "rule",
+        "b": "isolation",
+        "k": 10,
+        "spearman": -0.20566096349961313,
+        "mean": 0.18741022155476803,
+        "ci95": [
+          0.16929431480610235,
+          0.21067551165949888
+        ],
+        "days": 366
+      },
+      {
+        "a": "rule",
+        "b": "autoencoder",
+        "k": 1,
+        "spearman": -0.054188225094536406,
+        "mean": 0.08196721311475409,
+        "ci95": [
+          0.053210382513661204,
+          0.10655737704918032
+        ],
+        "days": 366
+      },
+      {
+        "a": "rule",
+        "b": "autoencoder",
+        "k": 3,
+        "spearman": -0.054188225094536406,
+        "mean": 0.09480874316939891,
+        "ci95": [
+          0.07963797814207652,
+          0.10915983606557375
+        ],
+        "days": 366
+      },
+      {
+        "a": "rule",
+        "b": "autoencoder",
+        "k": 5,
+        "spearman": -0.054188225094536406,
+        "mean": 0.1197740480527366,
+        "ci95": [
+          0.1064817525370804,
+          0.13233205395090641
+        ],
+        "days": 366
+      },
+      {
+        "a": "rule",
+        "b": "autoencoder",
+        "k": 10,
+        "spearman": -0.054188225094536406,
+        "mean": 0.20873226961766775,
+        "ci95": [
+          0.1911396895189021,
+          0.23033006826480534
+        ],
+        "days": 366
+      },
+      {
+        "a": "rule",
+        "b": "ensemble",
+        "k": 1,
+        "spearman": 0.32729061639910206,
+        "mean": 0.2103825136612022,
+        "ci95": [
+          0.16666666666666666,
+          0.24863387978142076
+        ],
+        "days": 366
+      },
+      {
+        "a": "rule",
+        "b": "ensemble",
+        "k": 3,
+        "spearman": 0.32729061639910206,
+        "mean": 0.21311475409836064,
+        "ci95": [
+          0.19029371584699453,
+          0.23320355191256828
+        ],
+        "days": 366
+      },
+      {
+        "a": "rule",
+        "b": "ensemble",
+        "k": 5,
+        "spearman": 0.32729061639910206,
+        "mean": 0.25586564316072513,
+        "ci95": [
+          0.23870782374880734,
+          0.2736601721745164
+        ],
+        "days": 366
+      },
+      {
+        "a": "rule",
+        "b": "ensemble",
+        "k": 10,
+        "spearman": 0.32729061639910206,
+        "mean": 0.3423449784410044,
+        "ci95": [
+          0.32464875083955935,
+          0.36322842383911763
+        ],
+        "days": 366
+      },
+      {
+        "a": "isolation",
+        "b": "autoencoder",
+        "k": 1,
+        "spearman": 0.743441783593989,
+        "mean": 0.2540983606557377,
+        "ci95": [
+          0.2144125683060109,
+          0.29651639344262287
+        ],
+        "days": 366
+      },
+      {
+        "a": "isolation",
+        "b": "autoencoder",
+        "k": 3,
+        "spearman": 0.743441783593989,
+        "mean": 0.26666666666666666,
+        "ci95": [
+          0.24656420765027326,
+          0.2914139344262295
+        ],
+        "days": 366
+      },
+      {
+        "a": "isolation",
+        "b": "autoencoder",
+        "k": 5,
+        "spearman": 0.743441783593989,
+        "mean": 0.3234669095324833,
+        "ci95": [
+          0.3011414151270708,
+          0.34413029100529097
+        ],
+        "days": 366
+      },
+      {
+        "a": "isolation",
+        "b": "autoencoder",
+        "k": 10,
+        "spearman": 0.743441783593989,
+        "mean": 0.4510839952650844,
+        "ci95": [
+          0.43230071519608637,
+          0.47294177320252034
+        ],
+        "days": 366
+      },
+      {
+        "a": "isolation",
+        "b": "ensemble",
+        "k": 1,
+        "spearman": 0.7780825895550045,
+        "mean": 0.3005464480874317,
+        "ci95": [
+          0.24863387978142076,
+          0.3484289617486338
+        ],
+        "days": 366
+      },
+      {
+        "a": "isolation",
+        "b": "ensemble",
+        "k": 3,
+        "spearman": 0.7780825895550045,
+        "mean": 0.26311475409836066,
+        "ci95": [
+          0.24138661202185796,
+          0.2838934426229508
+        ],
+        "days": 366
+      },
+      {
+        "a": "isolation",
+        "b": "ensemble",
+        "k": 5,
+        "spearman": 0.7780825895550045,
+        "mean": 0.3266219967039639,
+        "ci95": [
+          0.30842196851418163,
+          0.3477589123080926
+        ],
+        "days": 366
+      },
+      {
+        "a": "isolation",
+        "b": "ensemble",
+        "k": 10,
+        "spearman": 0.7780825895550045,
+        "mean": 0.4737445935613728,
+        "ci95": [
+          0.453575237956265,
+          0.49843502966996217
+        ],
+        "days": 366
+      },
+      {
+        "a": "autoencoder",
+        "b": "ensemble",
+        "k": 1,
+        "spearman": 0.8626843538719553,
+        "mean": 0.3797814207650273,
+        "ci95": [
+          0.33060109289617484,
+          0.431830601092896
+        ],
+        "days": 366
+      },
+      {
+        "a": "autoencoder",
+        "b": "ensemble",
+        "k": 3,
+        "spearman": 0.8626843538719553,
+        "mean": 0.3915300546448088,
+        "ci95": [
+          0.3635177595628416,
+          0.42032786885245893
+        ],
+        "days": 366
+      },
+      {
+        "a": "autoencoder",
+        "b": "ensemble",
+        "k": 5,
+        "spearman": 0.8626843538719553,
+        "mean": 0.44160378176771625,
+        "ci95": [
+          0.4228131234278775,
+          0.46603700451036517
+        ],
+        "days": 366
+      },
+      {
+        "a": "autoencoder",
+        "b": "ensemble",
+        "k": 10,
+        "spearman": 0.8626843538719553,
+        "mean": 0.5828682995992542,
+        "ci95": [
+          0.5665146874313943,
+          0.6039670899121237
+        ],
+        "days": 366
+      }
+    ],
+    "2025": [
+      {
+        "a": "rule",
+        "b": "isolation",
+        "k": 1,
+        "spearman": -0.254523898408409,
+        "mean": 0.11797752808988764,
+        "ci95": [
+          0.08426966292134831,
+          0.1531601123595505
+        ],
+        "days": 356
+      },
+      {
+        "a": "rule",
+        "b": "isolation",
+        "k": 3,
+        "spearman": -0.254523898408409,
+        "mean": 0.14634831460674158,
+        "ci95": [
+          0.11824438202247191,
+          0.16855337078651683
+        ],
+        "days": 356
+      },
+      {
+        "a": "rule",
+        "b": "isolation",
+        "k": 5,
+        "spearman": -0.254523898408409,
+        "mean": 0.21598002496878901,
+        "ci95": [
+          0.18605816390226504,
+          0.2435446205635812
+        ],
+        "days": 356
+      },
+      {
+        "a": "rule",
+        "b": "isolation",
+        "k": 10,
+        "spearman": -0.254523898408409,
+        "mean": 0.3768115677510571,
+        "ci95": [
+          0.3433266418186584,
+          0.417701336803167
+        ],
+        "days": 356
+      },
+      {
+        "a": "rule",
+        "b": "autoencoder",
+        "k": 1,
+        "spearman": -0.09409981594311627,
+        "mean": 0.13764044943820225,
+        "ci95": [
+          0.10526685393258427,
+          0.17282303370786511
+        ],
+        "days": 356
+      },
+      {
+        "a": "rule",
+        "b": "autoencoder",
+        "k": 3,
+        "spearman": -0.09409981594311627,
+        "mean": 0.17078651685393256,
+        "ci95": [
+          0.14535814606741573,
+          0.19213483146067417
+        ],
+        "days": 356
+      },
+      {
+        "a": "rule",
+        "b": "autoencoder",
+        "k": 5,
+        "spearman": -0.09409981594311627,
+        "mean": 0.23226547173176387,
+        "ci95": [
+          0.20294247146424113,
+          0.2615776038879971
+        ],
+        "days": 356
+      },
+      {
+        "a": "rule",
+        "b": "autoencoder",
+        "k": 10,
+        "spearman": -0.09409981594311627,
+        "mean": 0.3992151837100875,
+        "ci95": [
+          0.36649712508742366,
+          0.44170985651466216
+        ],
+        "days": 356
+      },
+      {
+        "a": "rule",
+        "b": "ensemble",
+        "k": 1,
+        "spearman": 0.30605729103752777,
+        "mean": 0.300561797752809,
+        "ci95": [
+          0.2556179775280899,
+          0.3469803370786516
+        ],
+        "days": 356
+      },
+      {
+        "a": "rule",
+        "b": "ensemble",
+        "k": 3,
+        "spearman": 0.30605729103752777,
+        "mean": 0.2955056179775281,
+        "ci95": [
+          0.26951544943820227,
+          0.3226615168539326
+        ],
+        "days": 356
+      },
+      {
+        "a": "rule",
+        "b": "ensemble",
+        "k": 5,
+        "spearman": 0.30605729103752777,
+        "mean": 0.3655698234349919,
+        "ci95": [
+          0.3387701756732655,
+          0.39252942750133757
+        ],
+        "days": 356
+      },
+      {
+        "a": "rule",
+        "b": "ensemble",
+        "k": 10,
+        "spearman": 0.30605729103752777,
+        "mean": 0.5086674610624935,
+        "ci95": [
+          0.47622408245315634,
+          0.5402653400576553
+        ],
+        "days": 356
+      },
+      {
+        "a": "isolation",
+        "b": "autoencoder",
+        "k": 1,
+        "spearman": 0.7196946534659104,
+        "mean": 0.32303370786516855,
+        "ci95": [
+          0.27247191011235955,
+          0.36797752808988765
+        ],
+        "days": 356
+      },
+      {
+        "a": "isolation",
+        "b": "autoencoder",
+        "k": 3,
+        "spearman": 0.7196946534659104,
+        "mean": 0.35196629213483144,
+        "ci95": [
+          0.3237148876404495,
+          0.3841502808988764
+        ],
+        "days": 356
+      },
+      {
+        "a": "isolation",
+        "b": "autoencoder",
+        "k": 5,
+        "spearman": 0.7196946534659104,
+        "mean": 0.4382802746566791,
+        "ci95": [
+          0.40989221062957015,
+          0.46673326868200465
+        ],
+        "days": 356
+      },
+      {
+        "a": "isolation",
+        "b": "autoencoder",
+        "k": 10,
+        "spearman": 0.7196946534659104,
+        "mean": 0.5914148365404149,
+        "ci95": [
+          0.5647417674443864,
+          0.6175227397767467
+        ],
+        "days": 356
+      },
+      {
+        "a": "isolation",
+        "b": "ensemble",
+        "k": 1,
+        "spearman": 0.7523828259896239,
+        "mean": 0.3146067415730337,
+        "ci95": [
+          0.265379213483146,
+          0.3595505617977528
+        ],
+        "days": 356
+      },
+      {
+        "a": "isolation",
+        "b": "ensemble",
+        "k": 3,
+        "spearman": 0.7523828259896239,
+        "mean": 0.37612359550561797,
+        "ci95": [
+          0.34296348314606745,
+          0.4036797752808989
+        ],
+        "days": 356
+      },
+      {
+        "a": "isolation",
+        "b": "ensemble",
+        "k": 5,
+        "spearman": 0.7523828259896239,
+        "mean": 0.4569511325129303,
+        "ci95": [
+          0.43088605760656323,
+          0.485750234082397
+        ],
+        "days": 356
+      },
+      {
+        "a": "isolation",
+        "b": "ensemble",
+        "k": 10,
+        "spearman": 0.7523828259896239,
+        "mean": 0.6028482686112178,
+        "ci95": [
+          0.5787398581573844,
+          0.6316080039555532
+        ],
+        "days": 356
+      },
+      {
+        "a": "autoencoder",
+        "b": "ensemble",
+        "k": 1,
+        "spearman": 0.8478379462743404,
+        "mean": 0.4410112359550562,
+        "ci95": [
+          0.3945926966292135,
+          0.4887640449438202
+        ],
+        "days": 356
+      },
+      {
+        "a": "autoencoder",
+        "b": "ensemble",
+        "k": 3,
+        "spearman": 0.8478379462743404,
+        "mean": 0.4856741573033708,
+        "ci95": [
+          0.45448033707865176,
+          0.5160252808988764
+        ],
+        "days": 356
+      },
+      {
+        "a": "autoencoder",
+        "b": "ensemble",
+        "k": 5,
+        "spearman": 0.8478379462743404,
+        "mean": 0.5289816301052256,
+        "ci95": [
+          0.5009452470126627,
+          0.5566236958266453
+        ],
+        "days": 356
+      },
+      {
+        "a": "autoencoder",
+        "b": "ensemble",
+        "k": 10,
+        "spearman": 0.8478379462743404,
+        "mean": 0.6847624588454067,
+        "ci95": [
+          0.6654987692413337,
+          0.7079970343602201
+        ],
+        "days": 356
+      }
+    ]
+  },
+  "score_drift": {
+    "2024": {
+      "rule": 0.029619907090464692,
+      "isolation": 0.013486996035453003,
+      "autoencoder": 0.013892158444464453,
+      "ensemble": 0.018429181005436
+    },
+    "2025": {
+      "rule": 0.036052685129656675,
+      "isolation": 0.030223492193402604,
+      "autoencoder": 0.022538283795433905,
+      "ensemble": 0.04041213490001386
+    }
+  },
+  "feature_drift": {
+    "2024": {
+      "min_distance_km": 0.005750188197095633,
+      "mean_distance_km": 0.004733835157322019,
+      "distance_std_km": 0.009374350810418083,
+      "log_observation_count": 0.001816119711756798,
+      "duration_hours": 0.010274291843990065,
+      "mean_sog_knots": 0.008447202448883322,
+      "min_sog_knots": 0.019060885333338815,
+      "std_sog_knots": 0.006764879708610269,
+      "low_speed_fraction_1kt": 0.014360673299863827,
+      "low_speed_fraction_3kt": 0.002745673345416202,
+      "anchored_fraction": 0.0,
+      "mean_cross_angle_deg": 0.002449988366668029,
+      "perpendicular_fraction": 0.0022062888489250074,
+      "path_length_km": 0.007805206997289491,
+      "tortuosity": 0.004209805111847419,
+      "mean_turn_deg": 0.0037714972545574354,
+      "turn_45_fraction": 0.0010164812680423345,
+      "approach_rate_kmh": 0.004317882635684336
+    },
+    "2025": {
+      "min_distance_km": 0.009031922504857593,
+      "mean_distance_km": 0.007211639546308271,
+      "distance_std_km": 0.016376017130167387,
+      "log_observation_count": 0.003051499512390125,
+      "duration_hours": 0.016343765624195983,
+      "mean_sog_knots": 0.007649439493782306,
+      "min_sog_knots": 0.020948617996674607,
+      "std_sog_knots": 0.0050990795971048025,
+      "low_speed_fraction_1kt": 0.008522253907298799,
+      "low_speed_fraction_3kt": 0.0027688053239940933,
+      "anchored_fraction": 0.0,
+      "mean_cross_angle_deg": 0.010090814238813799,
+      "perpendicular_fraction": 0.014257974572065036,
+      "path_length_km": 0.015822918760840986,
+      "tortuosity": 0.012416302306457183,
+      "mean_turn_deg": 0.016316461189954567,
+      "turn_45_fraction": 0.010519637816987174,
+      "approach_rate_kmh": 0.010117438100918936
+    }
+  },
+  "daily_lists": {
+    "2023": {
+      "rule_top1": 365,
+      "rule_top3": 1095,
+      "rule_top5": 1825,
+      "rule_top10": 3646,
+      "isolation_top1": 365,
+      "isolation_top3": 1095,
+      "isolation_top5": 1825,
+      "isolation_top10": 3646,
+      "autoencoder_top1": 365,
+      "autoencoder_top3": 1095,
+      "autoencoder_top5": 1825,
+      "autoencoder_top10": 3646,
+      "ensemble_top1": 365,
+      "ensemble_top3": 1095,
+      "ensemble_top5": 1825,
+      "ensemble_top10": 3646,
+      "days_with_eligible": 365,
+      "maximum_eligible_per_day": 77
+    },
+    "2024": {
+      "rule_top1": 366,
+      "rule_top3": 1098,
+      "rule_top5": 1830,
+      "rule_top10": 3648,
+      "isolation_top1": 366,
+      "isolation_top3": 1098,
+      "isolation_top5": 1830,
+      "isolation_top10": 3648,
+      "autoencoder_top1": 366,
+      "autoencoder_top3": 1098,
+      "autoencoder_top5": 1830,
+      "autoencoder_top10": 3648,
+      "ensemble_top1": 366,
+      "ensemble_top3": 1098,
+      "ensemble_top5": 1830,
+      "ensemble_top10": 3648,
+      "days_with_eligible": 366,
+      "maximum_eligible_per_day": 77
+    },
+    "2025": {
+      "rule_top1": 356,
+      "rule_top3": 1049,
+      "rule_top5": 1724,
+      "rule_top10": 3289,
+      "isolation_top1": 356,
+      "isolation_top3": 1049,
+      "isolation_top5": 1724,
+      "isolation_top10": 3289,
+      "autoencoder_top1": 356,
+      "autoencoder_top3": 1049,
+      "autoencoder_top5": 1724,
+      "autoencoder_top10": 3289,
+      "ensemble_top1": 356,
+      "ensemble_top3": 1049,
+      "ensemble_top5": 1724,
+      "ensemble_top10": 3289,
+      "days_with_eligible": 356,
+      "maximum_eligible_per_day": 92
+    }
+  },
+  "quality": {
+    "single_point": 586044,
+    "reasons": {
+      "fewer_than_3_observations": 658702,
+      "failed_composite_quality_gate": 1857,
+      "cross_year_episode_holdout": 29
+    },
+    "quality_grid": [
+      {
+        "min_observations": 2,
+        "max_gap": 3,
+        "eligible": 48989
+      },
+      {
+        "min_observations": 2,
+        "max_gap": 6,
+        "eligible": 74413
+      },
+      {
+        "min_observations": 2,
+        "max_gap": 12,
+        "eligible": 74413
+      },
+      {
+        "min_observations": 3,
+        "max_gap": 3,
+        "eligible": 26388
+      },
+      {
+        "min_observations": 3,
+        "max_gap": 6,
+        "eligible": 39280
+      },
+      {
+        "min_observations": 3,
+        "max_gap": 12,
+        "eligible": 39280
+      },
+      {
+        "min_observations": 4,
+        "max_gap": 3,
+        "eligible": 10375
+      },
+      {
+        "min_observations": 4,
+        "max_gap": 6,
+        "eligible": 18212
+      },
+      {
+        "min_observations": 4,
+        "max_gap": 12,
+        "eligible": 18212
+      }
+    ]
+  },
+  "limitations": [
+    "2025 already inspected during dataset work; retrospective test only",
+    "primary temporal splits share vessels and regions",
+    "no incident accuracy or causal explanation claim"
+  ],
+  "spatial_diagnostic": {
+    "training_2023_south": 901,
+    "validation_2024_north_unseen_vessels": 11942,
+    "boundary_northing_m": 2599651.348754513,
+    "buffer_total_m": 20000,
+    "envelope": "closest-fix northing +/- total observed path length",
+    "interpretation": "secondary sensitivity, not accident accuracy",
+    "stress": {
+      "n": 4000,
+      "vessels": 1031,
+      "methods": {
+        "rule": {
+          "auroc": 1.0,
+          "paired_uplift": 1.0,
+          "auroc_ci95": [
+            0.9999999999999999,
+            1.0
+          ],
+          "uplift_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "isolation": {
+          "auroc": 0.75480825,
+          "paired_uplift": 0.95975,
+          "auroc_ci95": [
+            0.7439603722747707,
+            0.7675300650166462
+          ],
+          "uplift_ci95": [
+            0.950861626851282,
+            0.9683935626307227
+          ]
+        },
+        "autoencoder": {
+          "auroc": 0.804480625,
+          "paired_uplift": 0.97025,
+          "auroc_ci95": [
+            0.7871024049968741,
+            0.8219546655819333
+          ],
+          "uplift_ci95": [
+            0.9619078999887698,
+            0.9771324368288
+          ]
+        },
+        "ensemble": {
+          "auroc": 0.96579596875,
+          "paired_uplift": 0.99975,
+          "auroc_ci95": [
+            0.9603825694141479,
+            0.9706392900097683
+          ],
+          "uplift_ci95": [
+            0.9991899871554545,
+            1.0
+          ]
+        }
+      },
+      "interpretation": "feature perturbation sensitivity; not accident detection performance"
+    }
+  }
+}
