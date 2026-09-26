@@ -85,7 +85,7 @@
         "repeat_within_24h": 23212
       }
     ],
-    "model_status": "v2 model not trained; v1 scores must not be attached to v2 episodes",
+    "model_status": "Episode-based preprocessing, Isolation Forest and autoencoder trained on 15,398 eligible 2023 episodes; compared with fixed weighted rules, validated on 13,993 eligible 2024 episodes and retrospectively tested on 9,889 eligible 2025 episodes. Scores rank review priority, not accident probability. Legacy daily-aggregate scores are not used.",
     "year_counts": {
       "2023": {
         "episodes": 250203,
